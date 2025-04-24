@@ -1,4 +1,4 @@
-// Replace with your actual backend endpoint
+// Replace with your actual backend endpoint// give it an actual ip address not a localhost ip 
 const backendUrl = "http://your-backend-ip:5000";
 
 // SIGNUP
