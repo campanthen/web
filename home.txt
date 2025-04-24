@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>AsriBank</title>
+  <meta charset="UTF-8">
+  <title>BankLab | Welcome</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome to AsriBank</h1>
-    <p>Your trusted banking lab environment.</p>
-    <div class="links">
-      <a href="signup.html" class="btn">Sign Up</a>
-      <a href="login.html" class="btn">Login</a>
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Welcome to <span>BankLab</span></h1>
+      <p>The simplest way to test your banking balance lab online.</p>
+      <div class="buttons">
+        <a href="signup.html"><button class="primary">Get Started</button></a>
+        <a href="login.html"><button class="secondary">Log In</button></a>
+      </div>
     </div>
   </div>
 </body>
