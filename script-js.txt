@@ -1,0 +1,48 @@
+// Replace with your actual backend endpoint
+const backendUrl = "http://your-backend-ip:5000";
+
+// SIGNUP
+const signupForm = document.getElementById('signup-form');
+if (signupForm) {
+  signupForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(signupForm));
+    const res = await fetch(`${backendUrl}/signup`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    if (res.ok) window.location.href = "dashboard.html";
+  });
+}
+
+// LOGIN
+const loginForm = document.getElementById('login-form');
+if (loginForm) {
+  loginForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(loginForm));
+    const res = await fetch(`${backendUrl}/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    if (res.ok) window.location.href = "dashboard.html";
+  });
+}
+
+// UPDATE BALANCE
+const balanceForm = document.getElementById('update-balance-form');
+if (balanceForm) {
+  balanceForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(balanceForm));
+    const res = await fetch(`${backendUrl}/update_balance`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const result = await res.json();
+    document.getElementById('balance').textContent = result.new_balance;
+  });
+}
