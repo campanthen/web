@@ -1,19 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Sign Up - AsriBank</title>
+  <meta charset="UTF-8">
+  <title>BankLab | Sign Up</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h2>Sign Up</h2>
-    <form action="http://localhost:5000/signup" method="POST">
-      <input type="text" name="username" placeholder="Username" required><br><br>
-      <input type="password" name="password" placeholder="Password" required><br><br>
-      <input type="email" name="email" placeholder="Email" required><br><br>
-      <input type="number" name="age" placeholder="Age" required><br><br>
-      <input type="submit" value="Create Account" class="btn">
-    </form>
+  <div class="hero">
+    <div class="hero-content">
+      <h1><span>Sign Up</span> for BankLab</h1>
+      <form id="signup-form">
+        <input type="text" name="name" placeholder="Full Name" required><br>
+        <input type="email" name="email" placeholder="Email" required><br>
+        <input type="number" name="age" placeholder="Age" required><br>
+        <input type="password" name="password" placeholder="Password" required><br>
+        <button class="primary" type="submit">Create Account</button>
+      </form>
+    </div>
   </div>
+  <script src="script.js"></script>
 </body>
 </html>
