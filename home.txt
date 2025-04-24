@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AsriBank</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to AsriBank</h1>
+    <p>Your trusted banking lab environment.</p>
+    <div class="links">
+      <a href="signup.html" class="btn">Sign Up</a>
+      <a href="login.html" class="btn">Login</a>
+    </div>
+  </div>
+</body>
+</html>
