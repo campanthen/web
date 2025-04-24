@@ -1,5 +1,21 @@
-<form action="http://localhost:5000/login" method="POST">
-  <input type="text" name="username" placeholder="Username" required><br><br>
-  <input type="password" name="password" placeholder="Password" required><br><br>
-  <input type="submit" value="Login" class="btn">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BankLab | Log In</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-content">
+      <h1><span>Login</span> to BankLab</h1>
+      <form id="login-form">
+        <input type="email" name="email" placeholder="Email" required><br>
+        <input type="password" name="password" placeholder="Password" required><br>
+        <button class="primary" type="submit">Log In</button>
+      </form>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
