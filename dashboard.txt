@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard - AsriBank</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Welcome to Your Dashboard</h2>
+    <form id="balanceForm">
+      <input type="number" name="balance" id="balance" placeholder="New Balance" required><br><br>
+      <input type="submit" value="Update Balance" class="btn">
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("balanceForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const balance = document.getElementById("balance").value;
+
+      fetch("http://localhost:5000/update_balance", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: "student", balance: balance })
+      })
+      .then(res => res.json())
+      .then(data => alert(data.message))
+      .catch(err => alert("Error: " + err));
+    });
+  </script>
+</body>
+</html>
