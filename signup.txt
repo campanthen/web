@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up - AsriBank</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Sign Up</h2>
+    <form action="http://localhost:5000/signup" method="POST">
+      <input type="text" name="username" placeholder="Username" required><br><br>
+      <input type="password" name="password" placeholder="Password" required><br><br>
+      <input type="email" name="email" placeholder="Email" required><br><br>
+      <input type="number" name="age" placeholder="Age" required><br><br>
+      <input type="submit" value="Create Account" class="btn">
+    </form>
+  </div>
+</body>
+</html>
