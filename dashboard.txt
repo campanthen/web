@@ -1,32 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Dashboard - AsriBank</title>
+  <meta charset="UTF-8">
+  <title>BankLab | Dashboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h2>Welcome to Your Dashboard</h2>
-    <form id="balanceForm">
-      <input type="number" name="balance" id="balance" placeholder="New Balance" required><br><br>
-      <input type="submit" value="Update Balance" class="btn">
-    </form>
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Welcome, <span>User</span></h1>
+      <p>Your current balance: <strong>$<span id="balance">0.00</span></strong></p>
+      <form id="update-balance-form">
+        <input type="number" name="balance" placeholder="Enter new balance" required><br>
+        <button class="primary" type="submit">Update Balance</button>
+      </form>
+      <br>
+      <a href="login.html"><button class="secondary">Log Out</button></a>
+    </div>
   </div>
-
-  <script>
-    document.getElementById("balanceForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const balance = document.getElementById("balance").value;
-
-      fetch("http://localhost:5000/update_balance", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: "student", balance: balance })
-      })
-      .then(res => res.json())
-      .then(data => alert(data.message))
-      .catch(err => alert("Error: " + err));
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
