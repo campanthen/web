@@ -1,46 +1,61 @@
 from flask import Flask, request, jsonify
-import mysql.connector
 from flask_cors import CORS
+import mysql.connector
+import hashlib
 
 app = Flask(__name__)
 CORS(app)
 
+# Connect to MariaDB
 db = mysql.connector.connect(
-    host="your-db-ip",
-    user="asriuser",
-    password="asripassword",
-    database="asribank"
+    host="localhost",
+    user="your_db_user",
+    password="your_db_password",
+    database="banklab"
 )
 
-cursor = db.cursor()
+cursor = db.cursor(dictionary=True)
+
+# Utility: hash passwords (very basic security)
+def hash_password(password):
+    return hashlib.sha256(password.encode()).hexdigest()
 
 @app.route('/signup', methods=['POST'])
 def signup():
-    username = request.form['username']
-    password = request.form['password']
-    email = request.form['email']
-    age = request.form['age']
-    cursor.execute("""
-        INSERT INTO users (username, password, email, age, balance)
-        VALUES (%s, %s, %s, %s, %s)
-    """, (username, password, email, age, 0))
+    data = request.get_json()
+    name = data['name']
+    email = data['email']
+    age = data['age']
+    password = hash_password(data['password'])
+
+    cursor.execute("INSERT INTO users (name, email, age, password, balance) VALUES (%s, %s, %s, %s, %s)",
+                   (name, email, age, password, 0.0))
     db.commit()
-    return "Account created!"
+    return jsonify({"message": "Signup successful"}), 200
 
 @app.route('/login', methods=['POST'])
 def login():
-    username = request.form['username']
-    password = request.form['password']
-    cursor.execute("SELECT * FROM users WHERE username=%s AND password=%s", (username, password))
+    data = request.get_json()
+    email = data['email']
+    password = hash_password(data['password'])
+
+    cursor.execute("SELECT * FROM users WHERE email=%s AND password=%s", (email, password))
     user = cursor.fetchone()
-    return "Login success" if user else "Login failed"
+
+    if user:
+        return jsonify({"message": "Login successful"}), 200
+    else:
+        return jsonify({"error": "Invalid credentials"}), 401
 
 @app.route('/update_balance', methods=['POST'])
 def update_balance():
     data = request.get_json()
-    cursor.execute("UPDATE users SET balance=%s WHERE username=%s", (data['balance'], data['username']))
+    email = data.get('email')  # In production, use sessions or tokens!
+    new_balance = float(data.get('balance'))
+
+    cursor.execute("UPDATE users SET balance = %s WHERE email = %s", (new_balance, email))
     db.commit()
-    return jsonify({"message": "Balance updated successfully!"})
+    return jsonify({"new_balance": new_balance}), 200
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0')
